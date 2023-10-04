@@ -1,26 +1,35 @@
 /* Calcular nota final de alumnos ingresados */
 
-/* Pedir nombre del alumno al cual se le calculara su nota final */
+let continuar = true;
 
-let nombreAlumno = prompt("Ingrese nombre del alumno:")
+while (continuar) {
+    /* Pedir nombre del alumno al cual se le calculara su nota final */
+    let nombreAlumno = prompt("Ingrese nombre del alumno. O escriba 'salir' para terminar operacion")
+    
+    if (nombreAlumno.toLowerCase() === 'salir') {
+        continuar = false;
+    } else {
+        /* Pedir nota de evaluaciones del alumno para calcular nota final */
+        
+        let notaExamenParcial = Number(prompt("Ingrese nota del examen parcial:"))
+        
+        let notaTrabajoPractico = Number(prompt("Ingrese nota del trabajo practico:"))
+        
+        let notaExamenFinal = Number(prompt("Ingrese nota del examen final:"))
 
-/* Pedir nota de evaluaciones del alumno para calcular nota final */
+        /* Mensaje que se da cuando se calcula la nota final */
+        
+        if (isNaN(notaExamenParcial) || isNaN(notaTrabajoPractico) || isNaN(notaExamenFinal)) {
+            alert ("Ingrese notas validas por favor.");
+        }else{
+            let notaFinal = calculoNotaFinal (notaExamenParcial, notaTrabajoPractico, notaExamenFinal);
+        
+            alert (`Nota final del alumno ${nombreAlumno}: ${notaFinal}`)
+        }
 
-let notaExamenParcial = Number(prompt("Ingrese nota del examen parcial:"))
-
-let notaTrabajoPractico = Number(prompt("Ingrese nota del trabajo practico:"))
-
-let notaExamenFinal = Number(prompt("Ingrese nota del examen final:"))
-
-/* Mensaje que se da cuando se calcula la nota final */
-
-if (isNaN(notaExamenParcial) || isNaN(notaTrabajoPractico) || isNaN(notaExamenFinal)) {
-    alert ("Ingrese notas validas por favor.");
-}else{
-    let notaFinal = calculoNotaFinal (notaExamenParcial, notaTrabajoPractico, notaExamenFinal);
-
-    alert (`Nota final del alumno ${nombreAlumno}: ${notaFinal}`)
+    }
 }
+
 
 /* Funcion para calcular la nota final */
 
